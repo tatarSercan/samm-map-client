@@ -1,0 +1,25 @@
+<div style="display:flex; flex-direction: row;">
+  <div style="width: 70%;">
+    <div id="map"></div>
+    <div style="margin-top: 10px;display: flex; flex-direction: row; justify-content: center">
+      <button (click)="saveCenterCoordinate()" style="background-color: black; color: white;padding: 5px 10px;">Noktayı Kaydet</button>
+    </div>
+  </div>
+
+  <div style="width: 30%;padding: 10px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between;padding-top: 20px;">
+      <span style="text-align: center;font-size: 1.5rem; font-weight: bold;">Kaydedilen koordinatlar</span>
+      <button *ngIf="savedCoordinates.length > 0" (click)="downloadCoordinates()"
+              style="background-color: chocolate; color: white;padding: 5px 10px;text-align: center;">İndir</button>
+    </div>
+    <div style="height: 440px;overflow-y: scroll;padding: 10px">
+      <div *ngFor="let coordinate of savedCoordinates"
+           style="display: flex; flex-direction: row;justify-content: space-between;margin-bottom:5px;padding:5px;cursor: pointer;border-bottom: solid #efefef 1px;">
+        <div style="display: flex; flex-direction: row;" (click)="showMarkerOfCurrentCoordinate(coordinate)">
+          <span>{{coordinate.lat}} - {{coordinate.lng}} &nbsp;&nbsp;<b>{{coordinate.datetime}}</b></span>
+        </div>
+        <button style="background-color: red; color: white; font-weight: bold;padding:3px 10px;" (click)="removeCoordinate(coordinate)">Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
